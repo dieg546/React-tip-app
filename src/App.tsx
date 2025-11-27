@@ -1,9 +1,13 @@
 import { useState } from 'react'
 import { menuItems } from './data/db'
 import { MenuItems } from './components/MenuItems'
+import useOrder from './hooks/useOrder'
+import OrderContents from './components/OrderContents'
 
 function App() {
   // const [count, setCount] = useState(0)
+
+  const {addItem,order} = useOrder()
 
   return (
     <>
@@ -24,6 +28,7 @@ function App() {
 
                 key={item.id}
                 item={item}
+                addItem={addItem}
 
               />
             )}
@@ -32,8 +37,12 @@ function App() {
           
         </div>
 
-        <div>
-          <h2>Consumo</h2>
+        <div className=' border border-dashed border-slate-300 p-5 rounded-lg space-y-10'>
+          <OrderContents
+            order={order}
+            
+          />
+          
 
         </div>
 
