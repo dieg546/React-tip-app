@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import { menuItems } from './data/db'
 import { MenuItems } from './components/MenuItems'
+import OrderTotals from './components/OrderTotals'
 import useOrder from './hooks/useOrder'
 import OrderContents from './components/OrderContents'
+import TipPercentageForm from './components/TipPercentageForm'
 
 function App() {
   // const [count, setCount] = useState(0)
 
-  const {addItem,order} = useOrder()
+  const {addItem,order,removeItem,tip,setTip,placeOrder} = useOrder()
 
   return (
     <>
@@ -40,15 +42,26 @@ function App() {
         <div className=' border border-dashed border-slate-300 p-5 rounded-lg space-y-10'>
           <OrderContents
             order={order}
+            removeItem={removeItem}
             
           />
           
+          <TipPercentageForm
+
+            setTip={setTip}    
+            tip={tip}        
+
+          />
+
+          <OrderTotals
+
+            order={order}
+            tip={tip}
+            placeOrder={placeOrder}
+            
+          />
 
         </div>
-
-        
-
-        
 
       </main>
       {/* <h1 className=" text-2xl font-bold">Hola mundito</h1> */}
