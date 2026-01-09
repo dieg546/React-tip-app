@@ -1,19 +1,19 @@
 import type { MenuItem } from "../types"
-import useOrder from "../hooks/useOrder"
+import type { OrderActions } from "../reducers/order-reducer"
 
 type ItemMenuProps={
 
-    item: MenuItem,
-    addItem: (item:MenuItem) => void
+  item: MenuItem,
+  dispatch: React.Dispatch<OrderActions>
 
-}
+} 
 
-export const MenuItems = ({item,addItem}:ItemMenuProps) => {
+export const MenuItems = ({item,dispatch}:ItemMenuProps) => {
   return (
     <>
 
         <button className=" border-2 border-teal-500 p-5 flex justify-between w-full hover:bg-teal-200"
-          onClick={()=>addItem(item)}
+          onClick={()=>dispatch({type: 'add-item',payload:{item}})}
         >
 
             <h1 >{item.name}</h1>
